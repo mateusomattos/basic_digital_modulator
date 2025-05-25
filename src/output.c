@@ -15,7 +15,7 @@ void plot_and_save_png(const ComplexFloat *iq_samples, size_t num_samples, const
 
     if (gnuplotPipe == NULL)
     {
-        perror("Erro ao abrir pipe para o Gnuplot");
+        fprintf(stderr, "Erro ao abrir pipe para o Gnuplot\n");
         return;
     }
 

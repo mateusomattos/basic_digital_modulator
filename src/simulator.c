@@ -19,21 +19,21 @@ int main(int argc, char **argv)
     app_config = config_create();
     if (!app_config)
     {
-        printf("Failed to create config\n");
+        fprintf(stderr, "Failed to create config\n");
         ret_code = EXIT_FAILURE;
         goto cleanup;
     }
 
     if (config_setup_from_cli(argc, argv, app_config))
     {
-        printf("Failed to parse the provided command-line arguments\n");
+        fprintf(stderr, "Failed to parse the provided command-line arguments\n");
         ret_code = EXIT_FAILURE;
         goto cleanup;
     }
 
     if (complete_config(app_config))
     {
-        printf("Failed to complete config\n");
+        fprintf(stderr, "Failed to complete config\n");
         ret_code = EXIT_FAILURE;
         goto cleanup;
     }
@@ -45,28 +45,28 @@ int main(int argc, char **argv)
 
     if (gen_bits(binary_data, app_config->num_bits))
     {
-        printf("Error to generate bits\n");
+        fprintf(stderr, "Error to generate bits\n");
         ret_code = EXIT_FAILURE;
         goto cleanup;
     }
 
     if (get_iq_samples(iq_samples, app_config, binary_data) != app_config->num_symbols)
     {
-        printf("Error to modulate\n");
+        fprintf(stderr, "Error to modulate\n");
         ret_code = EXIT_FAILURE;
         goto cleanup;
     }
 
     if (add_path_loss(iq_samples, app_config))
     {
-        printf("Error to add loss\n");
+        fprintf(stderr, "Error to add loss\n");
         ret_code = EXIT_FAILURE;
         goto cleanup;
     }
 
     if (add_awgn(iq_samples, app_config))
     {
-        printf("Error to add awgn\n");
+        fprintf(stderr, "Error to add awgn\n");
         ret_code = EXIT_FAILURE;
         goto cleanup;
     }

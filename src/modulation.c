@@ -48,7 +48,7 @@ size_t generic_modulator(ComplexFloat *iq_samples_out, config *app_config,  unsi
 {
     if (app_config->num_bits == 0 || bits_in == NULL)
     {
-        fprintf(stderr, "Error in bpsk_modulate: Invalid num_bits samples or bits_in.\n");
+        fprintf(stderr, "Error in generic_modulator: Invalid num_bits samples or bits_in.\n");
         return -1;
     }
     unsigned int *out = NULL;
@@ -56,7 +56,7 @@ size_t generic_modulator(ComplexFloat *iq_samples_out, config *app_config,  unsi
     num_groups = group_bits_to_decimal(bits_in, app_config->num_bits, app_config->modulation.bits_per_symbol, &out);
     if (!num_groups)
     {
-        printf("Error to get the symbols\n");
+        fprintf(stderr, "Error to get the symbols\n");
         return 0;
     }
     for (size_t i = 0; i < num_groups; i++)

@@ -41,7 +41,7 @@ int config_setup_from_cli(int argc, char **argv, config *config)
             config->sample_rate = atof(optarg);
             if(config->sample_rate < 0.0)
             {
-                printf("Sample rate must be >0\n");
+                fprintf(stderr, "Sample rate must be >0\n");
                 return -1;
             }
             printf("Sample rate: `%f`\n", config->sample_rate);
@@ -56,7 +56,7 @@ int config_setup_from_cli(int argc, char **argv, config *config)
             config->channel_distance_m = atof(optarg);
             if(config->channel_distance_m < 0.0)
             {
-                printf("Distance must be =>0\n");
+                fprintf(stderr, "Distance must be =>0\n");
                 return -1;
             }
             printf("Distance: `%.2f`\n", config->channel_distance_m);
@@ -71,7 +71,7 @@ int config_setup_from_cli(int argc, char **argv, config *config)
             config->freq = atof(optarg);
             if(config->freq <= 500e6)
             {
-                printf("Frequency must be =>500e6\n");
+                fprintf(stderr, "Frequency must be =>500e6\n");
                 return -1;
             }
             printf("Frequency: `%.2f`\n", config->freq);

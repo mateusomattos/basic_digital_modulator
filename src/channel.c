@@ -11,7 +11,7 @@ int add_awgn(ComplexFloat *iq_samples, config *app_config)
 {
     if (iq_samples == NULL || app_config->num_symbols == 0)
     {
-        fprintf(stderr, "Error in add_path_loss: Invalid IQ samples or app_config->num_symbols.\n");
+        fprintf(stderr, "Error in add_awgn: Invalid IQ samples or app_config->num_symbols.\n");
         return -1;
     }
 
