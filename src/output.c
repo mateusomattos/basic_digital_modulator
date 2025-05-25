@@ -7,7 +7,6 @@
 
 void plot_and_save_png(const ComplexFloat *iq_samples, size_t num_samples, const char *output_png_filename)
 {
-    float delta_plot = 0.5;
     MinMax min_max_im = get_min_max(&iq_samples->im, num_samples);
     MinMax min_max_re = get_min_max(&iq_samples->re, num_samples);
     float delta_plot_im =(min_max_im.max - min_max_im.min)*0.1;

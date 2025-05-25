@@ -24,7 +24,7 @@ int add_awgn(ComplexFloat *iq_samples, config *app_config)
     {
         //noise_im = sqrt(N0 / 2) * ((double)rand() / (double)RAND_MAX);
         //noise_re = sqrt(N0 / 2) * ((double)rand() / (double)RAND_MAX);
-        noise_im = sqrt(N0 / 2) *  box_muller(0, 1);
+        noise_im = sqrt(N0 / 2) * box_muller(0, 1); //Generate random number from a normal distribution (mean = 0, std = 1)
         noise_re = sqrt(N0 / 2) * box_muller(0, 1);
 
         iq_samples[i].re += noise_re;

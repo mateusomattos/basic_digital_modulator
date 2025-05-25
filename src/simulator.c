@@ -50,7 +50,7 @@ int main(int argc, char **argv)
         goto cleanup;
     }
 
-    if (get_iq_samples(iq_samples, app_config, binary_data) != app_config->num_bits)
+    if (get_iq_samples(iq_samples, app_config, binary_data) != app_config->num_symbols)
     {
         printf("Error to modulate\n");
         ret_code = EXIT_FAILURE;

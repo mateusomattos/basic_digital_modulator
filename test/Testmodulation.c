@@ -22,8 +22,8 @@ void bpsk_modulator_test()
 
     TEST_ASSERT_NOT_NULL(iq_samples);    
 
-    int result_code =  get_iq_samples(iq_samples, app_config, bits);
-    TEST_ASSERT_EQUAL_INT(app_config->num_bits, result_code);
+    size_t num_symbols =  get_iq_samples(iq_samples, app_config, bits);
+    TEST_ASSERT_EQUAL_INT(app_config->num_symbols, num_symbols);
 
     printf("First bit:\n");
     TEST_ASSERT_EQUAL_FLOAT(-1.0f, iq_samples[0].re);
@@ -50,8 +50,8 @@ void qpsk_modulator_test()
     unsigned int bits[] = {0, 1, 1, 0, 0, 0, 1, 1}; //symbols: 1, 2, 0, 3
 
 
-    int result_code =  get_iq_samples(iq_samples, app_config, bits);
-    TEST_ASSERT_EQUAL_INT(app_config->num_bits, result_code);
+    size_t num_symbols =  get_iq_samples(iq_samples, app_config, bits);
+    TEST_ASSERT_EQUAL_INT(app_config->num_symbols, num_symbols);
 
     printf("1# symbol:\n");
     TEST_ASSERT_EQUAL_FLOAT(-0.70710678, iq_samples[0].re);

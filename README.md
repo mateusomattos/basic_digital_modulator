@@ -19,9 +19,14 @@ To compile and run this project, you'll need:
 ## How to Compile
 Navigate to the project's root directory and run the make command:
 ```
-make
+make all
 ```
 This will create the simulator executable in the bin/ directory.
+
+To compile and execute the tests run the make command:
+```
+make test
+```
 
 ## How to Run
 The simulator is executed via the command line, with options to configure the simulation.

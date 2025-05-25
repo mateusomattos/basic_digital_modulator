@@ -38,7 +38,12 @@ int config_setup_from_cli(int argc, char **argv, config *config)
             break;
 
         case 'r':
-            config->sample_rate = atoi(optarg);
+            config->sample_rate = atof(optarg);
+            if(config->sample_rate < 0.0)
+            {
+                printf("Sample rate must be >0\n");
+                return -1;
+            }
             printf("Sample rate: `%f`\n", config->sample_rate);
             break;
 
@@ -49,6 +54,11 @@ int config_setup_from_cli(int argc, char **argv, config *config)
 
         case 'd':
             config->channel_distance_m = atof(optarg);
+            if(config->channel_distance_m < 0.0)
+            {
+                printf("Distance must be =>0\n");
+                return -1;
+            }
             printf("Distance: `%.2f`\n", config->channel_distance_m);
             break;
 
@@ -59,11 +69,16 @@ int config_setup_from_cli(int argc, char **argv, config *config)
 
         case 'f':
             config->freq = atof(optarg);
+            if(config->freq <= 500e6)
+            {
+                printf("Frequency must be =>500e6\n");
+                return -1;
+            }
             printf("Frequency: `%.2f`\n", config->freq);
             break;
 
         case 'b':
-            config->num_bits = atof(optarg);
+            config->num_bits = atoi(optarg);
             printf("Number of Bits: `%ld`\n", config->num_bits);
             break;
 
@@ -86,15 +101,15 @@ void print_usage()
 {
     fprintf(stderr, "\nUsage: ./simulator --input-file <path> --modulation <type> --sample-rate <rate> [OPTIONS]\n");
     fprintf(stderr, "\nOptions:\n");
-    fprintf(stderr, "  -m, --modulation <type>         Modulation type (e.g., BPSK, QPSK, 16QAM) (MANDATORY).\n");
-    fprintf(stderr, "  -r, --sample-rate <rate>        Sample rate in Hz (MANDATORY).\n");
-    fprintf(stderr, "  -f, --freq <frequency>          Carrier frequency in Hz (MANDATORY).\n");                     // Added --freq
-    fprintf(stderr, "  -b, --bits <number>             Number of bits to simulate (MANDATORY if no input file).\n"); // Added --bits
-    fprintf(stderr, "  -n, --EbN0 <SNR_dB>             Add AWGN. Optionally specify Eb/N0 SNR in dB (e.g., --EbN0=10.0). If no value, a default will be used.\n");
-    fprintf(stderr, "  -d, --channel-distance <m>      Simulate channel loss based on distance in meters. If no value, a default distance will be used.\n");
-    fprintf(stderr, "  -s, --sdr                       Enable SDR transmit mode.\n");
+    fprintf(stderr, "  -m, --modulation <type>         Modulation type (e.g., BPSK, QPSK, 16QAM).\n");
+    fprintf(stderr, "  -r, --sample-rate <rate>        Sample rate in Hz.\n");
+    fprintf(stderr, "  -f, --freq <frequency>          Carrier frequency in Hz.\n");
+    fprintf(stderr, "  -b, --bits <number>             Number of bits to simulate .\n");
+    fprintf(stderr, "  -n, --EbN0 <SNR_dB>             Add AWGN\n");
+    fprintf(stderr, "  -d, --channel-distance <m>      Simulate channel loss based on distance in meters\n");
+    fprintf(stderr, "  -s, --sdr                       Enable SDR transmit mode (TODO).\n");
     fprintf(stderr, "  -h, --help                      Display this help message.\n");
     fprintf(stderr, "\nExample:\n");
     fprintf(stderr, "  ./simulator -b 1000 -m QPSK -r 100000 -f 2.4e9 --EbN0=15.0 -d 500 -s\n");
-    fprintf(stderr, "  ./simulator --bits=10000 --modulation=BPSK --sample-rate=200000 --freq=915e6 --EbN0=10.0\n"); // Example using --bits
+    fprintf(stderr, "  ./simulator --bits=10000 --modulation=BPSK --sample-rate=200000 --freq=915e6 --EbN0=10.0\n");
 }

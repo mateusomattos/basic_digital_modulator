@@ -115,7 +115,7 @@ $(DIR_TEST_RESULTS)/Test%.txt: $(DIR_BIN)/Test%$(TARGET_EXTENSION) | $(DIR_TEST_
 	-$(EXE_PREFIX)$< > $@ 2>&1
 
 
-$(DIR_BIN)/Test%$(TARGET_EXTENSION): $(DIR_OBJ_TEST)/Test%.o $(DIR_OBJ_TEST)/src_%.o $(OBJ_UNITY_FOR_TEST)  $(DIR_OBJ_TEST)/src_utils.o  $(DIR_OBJ_TEST)/src_output.o $(DIR_OBJ_TEST)/src_config.o $(DIR_OBJ_TEST)/src_modulation.o| $(DIR_BIN)
+$(DIR_BIN)/Test%$(TARGET_EXTENSION): $(DIR_OBJ_TEST)/Test%.o $(DIR_OBJ_TEST)/src_%.o $(OBJ_UNITY_FOR_TEST)  $(DIR_OBJ_TEST)/src_utils.o  $(DIR_OBJ_TEST)/src_output.o $(DIR_OBJ_TEST)/src_config.o $(DIR_OBJ_TEST)/src_modulation.o $(DIR_OBJ_TEST)/src_boxmuller.o | $(DIR_BIN)
 	@echo "Linking test executable: $@"
 	$(LINK) $^ -o $@ $(LDFLAGS_TEST)
 

@@ -1,0 +1,29 @@
+# Ignorar executáveis
+*.exe
+*.out
+*.bin
+bin/
+bin_test/
+test_results/
+
+# Ignorar objetos compilados
+*.o
+obj/
+obj_test/
+
+# Ignorar arquivos de depuração
+*.gdb
+*.log
+
+# Ignorar arquivos de editor/IDE (ex: VS Code)
+.vscode/
+.DS_Store
+
+# Ignorar arquivos de backup
+*~
+
+# Ignorar arquivos temporários
+*.tmp
+
+*.png
+nul
