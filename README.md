@@ -1,6 +1,8 @@
 # Digital Communications Simulator
 This project implements a basic digital communications system simulator in C. It allows users to generate bit sequences, modulate these bits into IQ (In-phase and Quadrature) samples, simulate channel effects like free-space path loss and Additive White Gaussian Noise (AWGN), and visualize the resulting constellation diagram.
 
+Building upon prior studies (available at [https://github.com/mateusomattos/digital-communications](https://github.com/mateusomattos/digital-communications)), this new iteration focuses on a C-based implementation, specifically designed to facilitate easier integration with Software Defined Radios (SDRs) for real-world applications.
+
 ## Features
 * Bit Generation: Creates random binary bit sequences for simulation purposes.
 * Digital Modulation: Supports various modulation schemes (e.g., BPSK, QPSK, 16QAM).
