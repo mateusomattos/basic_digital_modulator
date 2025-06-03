@@ -5,6 +5,7 @@
 bin/
 bin_test/
 test_results/
+build/
 
 # Ignorar objetos compilados
 *.o
